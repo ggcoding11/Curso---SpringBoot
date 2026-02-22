@@ -1,6 +1,7 @@
 package com.example.meu_primeiro_spring.controller;
 
 import com.example.meu_primeiro_spring.service.MensagemService;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,4 +14,8 @@ public class MensagemController {
         this.mensagemService = mensagemService;
     }
 
+    @GetMapping("/mensagem")
+    public String mensagem() {
+        return mensagemService.obterMensagem();
+    }
 }
