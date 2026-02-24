@@ -1,6 +1,6 @@
-package com.example.meu_primeiro_spring.controller;
+package com.example.aula_3.controller;
 
-import com.example.meu_primeiro_spring.service.MensagemService;
+import com.example.aula_3.service.MensagemService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +15,8 @@ public class MensagemController {
     }
 
     @GetMapping
-    public String mostrarResultado() {
-        return mensagemService.obterMensagem();
+    public String dizerOi() {
+        return mensagemService.dizerOi();
     }
+
 }
