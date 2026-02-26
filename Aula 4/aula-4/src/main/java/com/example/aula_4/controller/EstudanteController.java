@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/estudantes")
@@ -23,10 +24,8 @@ public class EstudanteController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Estudante> listarPorId(@PathVariable Long id) {
-        return service.buscarPorId(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public Optional<Estudante> listarPorId(@PathVariable Long id) {
+        return service.buscarPorId(id);
     }
 
     @PostMapping

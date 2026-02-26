@@ -2,11 +2,10 @@ package com.example.meu_primeiro_spring.controller;
 
 import com.example.meu_primeiro_spring.model.Produto;
 import com.example.meu_primeiro_spring.service.ProdutoService;
-import org.apache.coyote.Response;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/produtos")
@@ -23,10 +22,8 @@ public class ProdutoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Produto> buscarProduto(@PathVariable Long id) {
-        return produtoService.buscarPorId(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public Optional<Produto> buscarProduto(@PathVariable Long id) {
+        return produtoService.buscarPorId(id);
     }
 
     @PostMapping
@@ -35,8 +32,7 @@ public class ProdutoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarProduto(@PathVariable Long id) {
+    public void deletarProduto(@PathVariable Long id) {
         produtoService.deletarProduto(id);
-        return ResponseEntity.noContent().build();
     }
 }
