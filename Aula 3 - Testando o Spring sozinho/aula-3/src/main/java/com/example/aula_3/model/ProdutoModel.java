@@ -1,6 +1,4 @@
 package com.example.aula_3.model;
-
-import com.example.aula_3.service.ProdutoService;
 import jakarta.persistence.*;
 
 @Entity
@@ -9,7 +7,6 @@ public class ProdutoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nome;
     private double preco;
 
@@ -20,20 +17,20 @@ public class ProdutoModel {
         this.preco = preco;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
     public Long getId() {
         return id;
     }
 
-    public double getPreco() {
-        return preco;
+    public String getNome() {
+        return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public double getPreco() {
+        return preco;
     }
 
     public void setPreco(double preco) {

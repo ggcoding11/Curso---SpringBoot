@@ -1,1 +1,1 @@
-- Continua a implementar a outras camadas até ficar igual a de produtosb
+- Parei na compreensão dos métodos do JPA (Como cada um é estruturado e como cada um funciona)
