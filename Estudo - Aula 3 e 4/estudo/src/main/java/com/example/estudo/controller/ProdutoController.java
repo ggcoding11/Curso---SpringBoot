@@ -2,6 +2,7 @@ package com.example.estudo.controller;
 
 import com.example.estudo.model.Produto;
 import com.example.estudo.service.ProdutoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,11 +11,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoController {
-    private final ProdutoService service;
 
-    public ProdutoController(ProdutoService service) {
-        this.service = service;
-    }
+    @Autowired
+    private ProdutoService service;
 
     @PostMapping
     public Produto salvarProduto(@RequestBody Produto p) {

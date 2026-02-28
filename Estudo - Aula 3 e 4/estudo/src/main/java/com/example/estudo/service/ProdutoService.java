@@ -2,6 +2,7 @@ package com.example.estudo.service;
 
 import com.example.estudo.model.Produto;
 import com.example.estudo.repository.ProdutoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,11 +10,9 @@ import java.util.Optional;
 
 @Service
 public class ProdutoService {
-    private final ProdutoRepository repository;
 
-    public ProdutoService(ProdutoRepository repository) {
-        this.repository = repository;
-    }
+    @Autowired
+    private ProdutoRepository repository;
 
     public Produto salvar(Produto p) {
         return repository.save(p);
