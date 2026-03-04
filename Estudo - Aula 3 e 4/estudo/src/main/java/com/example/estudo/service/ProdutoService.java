@@ -29,4 +29,13 @@ public class ProdutoService {
     public void deletar(Long id) {
         repository.deleteById(id);
     }
+
+    public Produto atualizar(Long id, Produto p) {
+        Produto antigo = repository.findById(id).get();
+
+        antigo.setNome(p.getNome());
+        antigo.setPreco(p.getPreco());
+
+        return repository.save(antigo);
+    }
 }
