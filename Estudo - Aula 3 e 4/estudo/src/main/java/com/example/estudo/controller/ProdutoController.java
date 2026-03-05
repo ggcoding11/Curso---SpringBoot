@@ -3,7 +3,9 @@ package com.example.estudo.controller;
 import com.example.estudo.enums.ProdutoEnum;
 import com.example.estudo.model.Produto;
 import com.example.estudo.service.ProdutoService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,13 +19,15 @@ public class ProdutoController {
     private ProdutoService service;
 
     @PostMapping
-    public Produto salvarProduto(@RequestBody Produto p) {
-        return service.salvar(p);
+    public ResponseEntity<Produto> salvarProduto(@RequestBody Produto p) {
+        Produto request = service.salvar(p);
+        return ResponseEntity.ok().body(request);
     }
 
     @GetMapping
-    public List<Produto> listarTodos() {
-        return service.listar();
+    public ResponseEntity<List<Produto>> listarTodos() {
+        List<Produto> request = service.listar();
+        return ResponseEntity.ok().body(request);
     }
 
     @GetMapping("/{id}")
