@@ -1,5 +1,6 @@
 package com.example.estudo.model;
 
+import com.example.estudo.enums.ProdutoEnum;
 import jakarta.persistence.*;
 
 @Entity
@@ -17,11 +18,15 @@ public class Produto {
     @Column(name = "preco_produto")
     private Double preco;
 
+    @Column(name = "categoria_produto")
+    private ProdutoEnum categoria;
+
     public Produto() {}
 
-    public Produto(String nome, Double preco) {
+    public Produto(String nome, Double preco, ProdutoEnum categoria) {
         this.nome = nome;
         this.preco = preco;
+        this.categoria = categoria;
     }
 
     public Long getId() {
@@ -42,5 +47,13 @@ public class Produto {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public ProdutoEnum getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(ProdutoEnum categoria) {
+        this.categoria = categoria;
     }
 }

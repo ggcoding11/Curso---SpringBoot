@@ -35,6 +35,7 @@ public class ProdutoService {
 
         antigo.setNome(p.getNome());
         antigo.setPreco(p.getPreco());
+        antigo.setCategoria(p.getCategoria());
 
         return repository.save(antigo);
     }

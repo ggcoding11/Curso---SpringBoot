@@ -1,5 +1,6 @@
 package com.example.estudo.controller;
 
+import com.example.estudo.enums.ProdutoEnum;
 import com.example.estudo.model.Produto;
 import com.example.estudo.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
