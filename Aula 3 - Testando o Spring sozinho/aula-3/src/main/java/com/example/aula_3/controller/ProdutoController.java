@@ -2,6 +2,7 @@ package com.example.aula_3.controller;
 
 import com.example.aula_3.model.ProdutoModel;
 import com.example.aula_3.service.ProdutoService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,8 +18,9 @@ public class ProdutoController {
     }
 
     @GetMapping
-    public List<ProdutoModel> listarProdutos() {
-        return produtoService.listarProdutos();
+    public ResponseEntity<List<ProdutoModel>> listarProdutos() {
+        List<ProdutoModel> request = produtoService.listarProdutos();
+        return ResponseEntity.ok().body(request);
     }
 
     @GetMapping("/{id}")
@@ -34,5 +36,10 @@ public class ProdutoController {
     @DeleteMapping
     public void deletarProduto(ProdutoModel produto) {
         produtoService.deletarProduto(produto);
+    }
+
+    @PutMapping("/{id}")
+    public ProdutoModel atualizarProduto(@PathVariable Long id, @RequestBody ProdutoModel p) {
+        return produtoService.atualizarProduto(id, p);
     }
 }

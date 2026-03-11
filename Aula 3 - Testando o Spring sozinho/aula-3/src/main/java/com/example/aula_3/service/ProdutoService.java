@@ -30,4 +30,13 @@ public class ProdutoService {
     public void deletarProduto(ProdutoModel produto) {
         produtoRepository.delete(produto);
     }
+
+    public ProdutoModel atualizarProduto(Long id, ProdutoModel p) {
+        ProdutoModel antigo = produtoRepository.findById(id).get();
+
+        antigo.setNome(p.getNome());
+        antigo.setPreco(p.getPreco());
+
+        return antigo;
+    }
 }
