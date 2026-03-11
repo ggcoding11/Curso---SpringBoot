@@ -7,7 +7,9 @@ import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +23,8 @@ public class ProdutoController {
     @PostMapping
     public ResponseEntity<Produto> salvarProduto(@RequestBody Produto p) {
         Produto request = service.salvar(p);
-        return ResponseEntity.ok().body(request);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(p.getId()).toUri();
+        return ResponseEntity.created(uri).body(request);
     }
 
     @GetMapping
@@ -36,8 +39,9 @@ public class ProdutoController {
     }
 
     @DeleteMapping("/{id}")
-    public void removerProduto(@PathVariable Long id) {
+    public ResponseEntity<?> removerProduto(@PathVariable Long id) {
         service.deletar(id);
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{id}")
