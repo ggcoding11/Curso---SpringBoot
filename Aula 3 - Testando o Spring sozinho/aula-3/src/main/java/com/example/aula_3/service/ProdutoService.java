@@ -23,8 +23,8 @@ public class ProdutoService {
         return produtoRepository.findAll();
     }
 
-    public ProdutoModel buscarPeloId(Long id) {
-        return produtoRepository.findById(id).orElseThrow(() -> new RuntimeException("Produto não encontrado!"));
+    public Optional<ProdutoModel> buscarPeloId(Long id) {
+        return produtoRepository.findById(id);
     }
 
     public void deletarProduto(Long id) {

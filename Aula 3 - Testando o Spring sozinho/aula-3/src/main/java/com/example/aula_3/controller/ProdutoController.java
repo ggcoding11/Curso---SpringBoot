@@ -26,9 +26,8 @@ public class ProdutoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProdutoModel> buscarPorId(Long id) {
-        ProdutoModel request = produtoService.buscarPeloId(id);
-        return ResponseEntity.ok().body(request);
+    public Optional<ProdutoModel> buscarPorId(@PathVariable Long id) {
+        return produtoService.buscarPeloId(id);
     }
 
     @PostMapping
