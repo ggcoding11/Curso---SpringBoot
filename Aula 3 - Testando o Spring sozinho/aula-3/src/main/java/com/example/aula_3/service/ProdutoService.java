@@ -23,12 +23,12 @@ public class ProdutoService {
         return produtoRepository.findAll();
     }
 
-    public Optional<ProdutoModel> buscarPeloId(Long id) {
-        return produtoRepository.findById(id);
+    public ProdutoModel buscarPeloId(Long id) {
+        return produtoRepository.findById(id).orElseThrow(() -> new RuntimeException("Produto não encontrado!"));
     }
 
-    public void deletarProduto(ProdutoModel produto) {
-        produtoRepository.delete(produto);
+    public void deletarProduto(Long id) {
+        produtoRepository.deleteById(id);
     }
 
     public ProdutoModel atualizarProduto(Long id, ProdutoModel p) {

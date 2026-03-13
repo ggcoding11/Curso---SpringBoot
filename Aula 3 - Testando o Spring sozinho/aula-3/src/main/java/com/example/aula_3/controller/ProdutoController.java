@@ -4,7 +4,9 @@ import com.example.aula_3.model.ProdutoModel;
 import com.example.aula_3.service.ProdutoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,18 +26,24 @@ public class ProdutoController {
     }
 
     @GetMapping("/{id}")
-    public Optional<ProdutoModel> buscarPorId(Long id) {
-        return produtoService.buscarPeloId(id);
+    public ResponseEntity<ProdutoModel> buscarPorId(Long id) {
+        ProdutoModel request = produtoService.buscarPeloId(id);
+        return ResponseEntity.ok().body(request);
     }
 
     @PostMapping
-    public ProdutoModel salvarProduto(@RequestBody ProdutoModel produto) {
-        return produtoService.salvarProduto(produto);
+    public ResponseEntity<ProdutoModel> salvarProduto(@RequestBody ProdutoModel produto) {
+        ProdutoModel request = produtoService.salvarProduto(produto);
+
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(produto.getId()).toUri();
+        return ResponseEntity.created(uri).body(request);
     }
 
-    @DeleteMapping
-    public void deletarProduto(ProdutoModel produto) {
-        produtoService.deletarProduto(produto);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletarProduto(@PathVariable Long id) {
+        produtoService.deletarProduto(id);
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{id}")
