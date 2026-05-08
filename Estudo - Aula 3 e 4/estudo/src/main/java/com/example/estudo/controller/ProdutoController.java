@@ -23,7 +23,9 @@ public class ProdutoController {
     @PostMapping
     public ResponseEntity<Produto> salvarProduto(@RequestBody Produto p) {
         Produto request = service.salvar(p);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(p.getId()).toUri();
+
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(p.getId()).toUri();
+
         return ResponseEntity.created(uri).body(request);
     }
 
