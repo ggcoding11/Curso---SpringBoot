@@ -10,7 +10,6 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/pessoas")
 public class PessoaController {
-
     @Autowired
     private PessoaService pessoaService;
 
@@ -18,12 +17,9 @@ public class PessoaController {
     public List<PessoaModel> findAll(){
         return  pessoaService.findAll();
     }
+
     @PostMapping
     public PessoaModel criarPessoa(@RequestBody PessoaModel pessoaModel){
         return  pessoaService.criarPessoa(pessoaModel);
     }
-
-
-
-
 }

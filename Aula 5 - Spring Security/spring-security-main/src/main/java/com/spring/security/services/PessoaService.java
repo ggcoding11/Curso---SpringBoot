@@ -20,6 +20,4 @@ public class PessoaService {
     public PessoaModel criarPessoa(PessoaModel pessoaModel){
         return  pessoaRepository.save(pessoaModel);
     }
-
-
 }
